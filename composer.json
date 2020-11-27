@@ -1,0 +1,20 @@
+{
+    "name": "websolutespa/magento-transporter-base",
+    "description": "Websolute Transporter Base module",
+    "type": "magento2-module",
+    "require": {
+        "magento/framework": "*",
+        "websolutespa/magento-transporter-entity": "^1.0",
+        "websolutespa/magento-transporter-activity": "^1.0",
+        "websolutespa/magento-transporter-command": "^1.0"
+    },
+    "license": "OSL-3.0",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Websolute\\TransporterBase\\": ""
+        }
+    }
+}
