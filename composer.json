@@ -1,20 +1,36 @@
 {
-    "name": "websolutespa/magento-transporter-base",
-    "description": "Websolute Transporter Base module",
-    "type": "magento2-module",
-    "require": {
-        "magento/framework": "*",
-        "websolutespa/magento-transporter-entity": "^1.0",
-        "websolutespa/magento-transporter-activity": "^1.0",
-        "websolutespa/magento-transporter-command": "^1.0"
+  "name": "websolutespa/magento-transporter-base",
+  "description": "Websolute Transporter Base module",
+  "type": "magento2-module",
+  "require": {
+    "magento/framework": "*",
+    "websolutespa/magento-transporter-entity": "^1.0",
+    "websolutespa/magento-transporter-activity": "^1.0",
+    "websolutespa/magento-transporter-command": "^1.0"
+  },
+  "authors": [
+    {
+      "name": "Danilo Argentiero",
+      "email": "argentiero.danilo@gmail.com",
+      "homepage": "https://www.linkedin.com/in/daniloargentiero/",
+      "role": "Software Architect"
     },
-    "license": "OSL-3.0",
-    "autoload": {
-        "files": [
-            "registration.php"
-        ],
-        "psr-4": {
-            "Websolute\\TransporterBase\\": ""
-        }
+    {
+      "name": "Riccardo Ugolini",
+      "email": "riccardo.ugolini@gmail.com",
+      "homepage": "https://www.linkedin.com/in/riccardougolini/",
+      "role": "Software Architect"
     }
+  ],
+  "license": [
+    "MIT"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Websolute\\TransporterBase\\": ""
+    }
+  }
 }

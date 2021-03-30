@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright © Websolute spa. All rights reserved.
- * See COPYING.txt for license details.
+ * See LICENSE and/or COPYING.txt for license details.
  */
 
 declare(strict_types=1);
@@ -23,8 +23,8 @@ class File extends Base
     /**
      * @param TransporterConfigInterface $config
      * @param DriverInterface $filesystem
-     * @param null $filePath
-     * @param null $fileName
+     * @param string $filePath
+     * @param string $fileName
      * @throws Exception
      */
     public function __construct(

@@ -1,13 +1,14 @@
 <?php
 /*
  * Copyright © Websolute spa. All rights reserved.
- * See COPYING.txt for license details.
+ * See LICENSE and/or COPYING.txt for license details.
  */
 
 declare(strict_types=1);
 
 namespace Websolute\TransporterBase\Model\Action;
 
+use Exception;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Websolute\TransporterActivity\Api\ActivityRepositoryInterface;
 use Websolute\TransporterActivity\Model\ActivityModelFactory;
@@ -49,20 +50,24 @@ class DownloadAction
 
     /**
      * @param string $type
-     * @throws TransporterException
+     * @param string $extra
      * @throws NoSuchEntityException
+     * @throws TransporterException
      */
-    public function execute(string $type)
+    public function execute(string $type, string $extra = '')
     {
         try {
             $downloaderList = $this->transporterList->getDownloaderList($type);
             $activity = $this->activityModelFactory->create();
             $activity->setType($type);
             $activity->setStatus(ActivityStateInterface::DOWNLOADING);
+            if ($extra !== '') {
+                $activity->addExtraArray(['data' => $extra]);
+            }
             $this->activityRepository->save($activity);
 
             $downloaderList->execute((int)$activity->getId());
-        } catch (TransporterException $e) {
+        } catch (Exception $e) {
             if (isset($activity)) {
                 $activity->setStatus(ActivityStateInterface::DOWNLOAD_ERROR);
                 $activity->addExtraArray(['error' => $e->getMessage()]);

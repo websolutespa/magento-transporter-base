@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright © Websolute spa. All rights reserved.
- * See COPYING.txt for license details.
+ * See LICENSE and/or COPYING.txt for license details.
  */
 
 declare(strict_types=1);
@@ -91,7 +91,7 @@ class ManipulatorListProcessor implements ManipulatorListProcessorInterface
                         $manipulatorType,
                         $entityIdentifier
                     ));
-                    $manipulator->execute($activityId, $manipulatorType, $entityIdentifier, $entities);
+                    $manipulator->execute($activityId, $manipulatorType, (string)$entityIdentifier, $entities);
                     $this->logger->debug(__(
                         'activityId:%1 ~ Manipulator ~ manipulatorType:%2 ~ entityIdentifier:%3 ~ END',
                         $activityId,
@@ -123,7 +123,7 @@ class ManipulatorListProcessor implements ManipulatorListProcessorInterface
                 $this->activityRepository->save($activity);
             }
             $this->logger->error(__(
-                'activityId:%1 ~ ManipulatorList ~ ERROR ~ error:%3',
+                'activityId:%1 ~ ManipulatorList ~ ERROR ~ error:%2',
                 $activityId,
                 $e->getMessage()
             ));

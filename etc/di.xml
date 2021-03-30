@@ -1,8 +1,16 @@
 <?xml version="1.0"?>
 <!--
   ~ Copyright © Websolute spa. All rights reserved.
-  ~ See COPYING.txt for license details.
+  ~ See LICENSE and/or COPYING.txt for license details.
   -->
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <preference for="Websolute\TransporterBase\Api\TransporterListInterface" type="Websolute\TransporterBase\Model\TransporterList"/>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Websolute\TransporterBase\Api\TransporterListInterface"
+                type="Websolute\TransporterBase\Model\TransporterList"/>
+    <preference for="Websolute\TransporterBase\Api\TransporterConfigInterface"
+                type="Websolute\TransporterBase\Model\Config"/>
+    <type name="Websolute\TransporterBase\Api\ManipulatorInterface">
+        <plugin name="Websolute_TransporterBase_Manipulator_RemoveSkippedEntities"
+                type="Websolute\TransporterBase\Plugin\Manipulator\RemoveSkippedEntities"/>
+    </type>
 </config>

@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright © Websolute spa. All rights reserved.
- * See COPYING.txt for license details.
+ * See LICENSE and/or COPYING.txt for license details.
  */
 
 declare(strict_types=1);
@@ -79,6 +79,7 @@ class DownloaderListProcessor implements DownloaderListProcessorInterface
                     $downloaderType
                 ));
 
+                $activity = $this->activityRepository->getById($activityId);
                 $activity->addExtraArray(['downloader_' . $downloaderType => ActivityStateInterface::DOWNLOADED]);
                 $this->activityRepository->save($activity);
             }

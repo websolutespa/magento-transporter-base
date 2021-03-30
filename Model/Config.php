@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright © Websolute spa. All rights reserved.
- * See COPYING.txt for license details.
+ * See LICENSE and/or COPYING.txt for license details.
  */
 
 declare(strict_types=1);
@@ -10,10 +10,13 @@ namespace Websolute\TransporterBase\Model;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
+use Monolog\Logger;
+use Websolute\TransporterBase\Api\TransporterConfigInterface;
 
-class Config
+class Config implements TransporterConfigInterface
 {
     const TRANSPORTER_IS_ENABLED_CONFIG_PATH = 'transporter/general/enabled';
+    const TRANSPORTER_SEMAPHORE_THRESHOLD_CONFIG_PATH = 'transporter/general/semaphore_threshold';
 
     /**
      * @var ScopeConfigInterface
@@ -38,5 +41,31 @@ class Config
             self::TRANSPORTER_IS_ENABLED_CONFIG_PATH,
             ScopeInterface::SCOPE_STORE
         );
+    }
+
+    /**
+     * @return int
+     */
+    public function getSemaphoreThreshold(): int
+    {
+        return (int)$this->scopeConfig->getValue(
+            self::TRANSPORTER_SEMAPHORE_THRESHOLD_CONFIG_PATH,
+            ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    public function continueInCaseOfErrors(): bool
+    {
+        return true;
+    }
+
+    public function isLogEnabled(): bool
+    {
+        return true;
+    }
+
+    public function getLogLevel(): int
+    {
+        return Logger::DEBUG;
     }
 }

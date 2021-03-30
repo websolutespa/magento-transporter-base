@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
   ~ Copyright © Websolute spa. All rights reserved.
-  ~ See COPYING.txt for license details.
+  ~ See LICENSE and/or COPYING.txt for license details.
   -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
@@ -18,6 +18,13 @@
                 <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>Enable Transporter</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="semaphore_threshold" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Semaphore Threshold (in minutes)</label>
+                    <depends>
+                        <field id="transporter/general/enabled">1</field>
+                    </depends>
+                    <validate>validate-greater-than-zero validate-number required-entry</validate>
                 </field>
             </group>
         </section>
